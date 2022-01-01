@@ -22,3 +22,5 @@ jobs:
 
       - name: "Run stargazers raffle ﱬ"
         run: nix-shell --run "scala-cli package . -o raffle -f && ./raffle gvolpe dconf2nix"
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
