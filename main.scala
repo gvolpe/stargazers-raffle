@@ -5,7 +5,6 @@ import com.monovore.decline.effect.*
 import org.http4s.Header
 import org.typelevel.ci.*
 
-/*    @username    ﬦ from 50 🌟 stargazers! */
 object Main
     extends CommandIOApp(
       name = "stargazers-raffle",
@@ -22,12 +21,21 @@ object Main
   val displayUsersFlag: Opts[Boolean] =
     Opts.flag("show-all-users", help = "Display all the stargazers before raffle", short = "s").orFalse
 
+  val postWinnerFlag: Opts[Boolean] =
+    Opts.flag("post-winner", help = "Post the winner on the designated Github issue").orFalse
+
   val ghTokenOpts: Opts[Option[String]] =
     Opts.env[String]("GH_TOKEN", help = "Github personal access token").orNone
 
   val main: Opts[IO[ExitCode]] =
-    (authorOpts, repoOpts, ghTokenOpts, displayUsersFlag).mapN { (author, repo, token, display) =>
+    (
+      authorOpts,
+      repoOpts,
+      ghTokenOpts,
+      displayUsersFlag,
+      postWinnerFlag
+    ).mapN { (author, repo, token, display, shouldPost) =>
       // default rate-limit is 60 req/hour, when using auth token goes up to 5000 req/hour
       val auth = token.map(t => Header.Raw(ci"Authorization", s"token $t"))
-      Raffle.run(s"$author/$repo", auth, display).as(ExitCode.Success)
+      Raffle.run(author, repo, auth, display, shouldPost).as(ExitCode.Success)
     }

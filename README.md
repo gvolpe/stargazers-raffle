@@ -40,6 +40,8 @@ Options and flags:
         Print the version number and exit.
     --show-all-users, -s
         Display all the stargazers before raffle
+    --post-winner
+        Post the winner on the designated Github issue
 
 Environment Variables:
     GH_TOKEN=<string>
@@ -54,5 +56,5 @@ $ ./raffle gvolpe dconf2nix
 
 🏆🏆🏆 @username 🏆🏆🏆
 
- * from 50 🌟 stargazers!
+ * from 50 🌟 stargazers of https://github.com/gvolpe/dconf2nix!
 ```
