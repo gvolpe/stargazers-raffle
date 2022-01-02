@@ -51,10 +51,12 @@ Environment Variables:
 For example.
 
 ```shell
-$ ./raffle gvolpe dconf2nix
+$ ./raffle gvolpe dconf2nix --post-winner
 ℹ️ 2 requests made to Github API ℹ️
 
 🏆🏆🏆 @username 🏆🏆🏆
 
  * from 50 🌟 stargazers of https://github.com/gvolpe/dconf2nix!
+
+✔️ Done. See https://github.com/gvolpe/stargazers-raffle/issues/1
 ```

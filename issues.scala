@@ -15,12 +15,13 @@ def postWinner(
 ): IO[Unit] =
   auth.fold(IO.println("⚠️ Missing Github auth token, skipping issue comment ⚠️ ")) { h =>
     val uri = uri"https://api.github.com/repos/gvolpe/stargazers-raffle/issues/1/comments"
+    val issue = uri.show.replace("api.", "").replace("repos/", "").replace("/comments", "")
     val jsonBody = Json.obj("body" -> Json.fromString(body))
 
     cli.run(POST(jsonBody ,uri, h)).map(_.status).use {
       case Status.Created =>
-        IO.println(s"\n ✔️ Done. See $uri")
+        IO.println(s"\n✔️ Done. See $issue")
       case st =>
-        IO.println(s"\n 🚫 Failed to post issue comment: ${st.show} 🚫")
+        IO.println(s"\n🚫 Failed to post issue comment: ${st.show} 🚫")
     }
   }
