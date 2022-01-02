@@ -1,6 +1,6 @@
 # stargazers-raffle
 
-Run a raffle from the 🌟 stargazers 🌟 of a Github project!
+Run a raffle with the 🌟 stargazers 🌟 of a Github project!
 
 ## Overview
 
