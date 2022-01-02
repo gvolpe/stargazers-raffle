@@ -26,7 +26,7 @@ jobs:
       - name: "Install Nix ❄️"
         uses: cachix/install-nix-action@v14.1
 
-      - name: "Run stargazers raffle ﱬ from repo ${{ matrix.author }}/${{ matrix.repo }} 🚀"
-        run: nix-shell --run "scala-cli package . -o raffle -f && ./raffle ${{ matrix.repo }} ${{ matrix.repo }}"
+      - name: "Run stargazers raffle from ${{ matrix.author }}/${{ matrix.repo }} 🚀"
+        run: nix-shell --run "scala-cli package . -o raffle -f && ./raffle ${{ matrix.author }} ${{ matrix.repo }}"
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
