@@ -29,4 +29,4 @@ jobs:
       - name: "Run stargazers raffle from ${{ matrix.author }}/${{ matrix.repo }} 🚀"
         run: nix-shell --run "scala-cli run . -- ${{ matrix.author }} ${{ matrix.repo }}"
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
