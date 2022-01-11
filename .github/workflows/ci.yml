@@ -15,7 +15,7 @@ jobs:
         author:
           - gvolpe
         repo:
-          - dconf2nix
+          - trading
 
     steps:
       - uses: actions/checkout@v2.3.2
@@ -27,6 +27,6 @@ jobs:
         uses: cachix/install-nix-action@v14.1
 
       - name: "Run stargazers raffle from ${{ matrix.author }}/${{ matrix.repo }} 🚀"
-        run: nix-shell --run "scala-cli run . -- ${{ matrix.author }} ${{ matrix.repo }}"
+        run: nix-shell --run "scala-cli run . -- ${{ matrix.author }} ${{ matrix.repo }} --post-winner"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
